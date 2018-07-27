@@ -1,0 +1,100 @@
+<template>
+  <div class="">
+    <h1>hola desde el componente 1</h1>
+
+    <form enctype="multipart/form-data">
+      <input type="file" name="imgContent" @change="onFileSelected">
+      <button v-on:click.prevent="onUpload"> subir </button>
+    </form>
+
+  </div>
+</template>
+
+<script>
+import axios from 'axios';
+    export default {
+        data () {
+            return {
+              selectedFile: null,
+            }
+        },
+        methods:{
+          onFileSelected(event){
+            this.selectedFile = event.target.files[0];
+            var storageRef = firebase.storage().ref('photos', + this.selectedFile.name);
+            storageRef.put(this.selectedFile)
+            .then(res =>{
+              console.log(res);
+            })
+          },
+          onUpload(){
+
+          }
+        }
+    }
+</script>
+
+<style scoped>
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<template>
+  <div class="">
+    <h1>hola desde el componente 1</h1>
+
+    <form enctype="multipart/form-data">
+      <input type="file" name="imgContent" @change="onFileSelected">
+      <button v-on:click.prevent="onUpload"> subir </button>
+    </form>
+
+  </div>
+</template>
+
+<script>
+import axios from 'axios';
+    export default {
+        data () {
+            return {
+              selectedFile: null,
+            }
+        },
+        headers:{
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        methods:{
+          onFileSelected(event){
+            this.selectedFile = event.target.files[0];
+            console.log(this.selectedFile)
+          },
+          onUpload(){
+            const fd = new FormData();
+            fd.append('image', this.selectedFile)
+            axios.post('https://us-central1-app-news-bb81b.cloudfunctions.net/uploadFile', fd)
+            .then(res => {
+              console.log(res);
+            })
+          }
+        }
+    }
+</script>
+
+<style scoped>
+</style>
+\
+
