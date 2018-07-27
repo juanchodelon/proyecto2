@@ -1,0 +1,28 @@
+{
+  "name": "app-b",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3"
+  },
+  "devDependencies": {
+    "axios": "^0.18.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "css-loader": "^1.0.0",
+    "vue": "^2.5.16",
+    "vue-axios": "^2.1.2",
+    "vue-loader": "^13.6.0",
+    "vue-template-compiler": "^2.5.16",
+    "webpack": "^3.10.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "build": "webpack -w"
+  },
+  "author": "",
+  "license": "ISC"
+}
