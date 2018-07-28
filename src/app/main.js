@@ -4,10 +4,14 @@ import VueAxios from 'vue-axios';
 
 import App from './App.vue'
 import Comp from './components/comp.vue';
+import Pub from './components/pub.vue';
+import Show from './components/show.vue';
 
 export const bus = new Vue();
 
 Vue.component('app-comp', Comp);
+Vue.component('app-pub', Pub);
+Vue.component('app-show', Show);
 Vue.use(VueAxios, axios);
 
 /******firebase*****************************************/

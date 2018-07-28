@@ -4,6 +4,10 @@
     <hr>
 
     <app-comp></app-comp>
+    <hr>
+    <app-pub></app-pub>
+    <hr>
+    <app-show></app-show>
 
   </div>
 </template>
