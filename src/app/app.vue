@@ -1,13 +1,11 @@
 <template>
-  <div class="">
-    <h1>hola desde vue</h1>
-    <hr>
+  <div class="" >
 
-    <app-comp></app-comp>
-    <hr>
-    <app-pub></app-pub>
-    <hr>
-    <app-show></app-show>
+    <div class="containerAddShow">
+        <app-add></app-add>
+        <app-show></app-show>
+        <app-hmobile></app-hmobile>
+    </div>
 
   </div>
 </template>
