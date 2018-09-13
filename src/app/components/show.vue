@@ -1,9 +1,9 @@
 <template>
   <div class="">
 
-    <div v-for="blog in blogs" class="card">
+    <div v-for="blog in blogfilter" class="card">
         <p id="lblcategory">{{blog.category}}</p>
-        <p id="lbldate">{{blog.date}}</p>
+        <p id="lbldate">{{moment(blog.date).fromNow()}}</p>
         <img :src="blog.url" >
         <p id="lblcontent">{{blog.content}}</p>
     </div>
@@ -12,11 +12,16 @@
 </template>
 
 <script>
+var moment = require('moment');
+import { bus } from '../main';
 import axios from 'axios';
     export default {
         data () {
             return {
                 blogs: [],
+				moment: moment,
+				search: '',
+				category: '',
             }
         },
         created(){
@@ -28,9 +33,34 @@ import axios from 'axios';
                     this.blogs.push(dato[key])
                     this.blogs.reverse()
                 }
-            })
+            });
+            bus.$on('categoria', data => {
+				this.category = data;
+			});
 
-        }
+			bus.$on('buscar', data => {
+				this.search = data;
+			});
+
+        },
+		computed: {
+			searchPostes: function(){
+				if(this.search == ''){
+					return this.blogs.filter((blog) => blog.category.match(this.category));
+				}else{
+					return this.blogs.filter((blog) => blog.content.match(this.search));
+				}
+            },
+            blogfilter: function(){
+                if(this.search == ''){
+					return this.blogs.filter((blog) => blog.category.match(this.category));
+				}else{
+					return this.blogs.filter((blog) => blog.content.match(this.search));
+				}
+                //return this.blogs.filter((blog) => blog.content.match(this.search));
+                //return this.blogs.filter((blog) => blog.category.match(this.category));
+            }
+		}
     }
 </script>
 
