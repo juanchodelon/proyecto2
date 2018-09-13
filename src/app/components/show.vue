@@ -44,21 +44,12 @@ import axios from 'axios';
 
         },
 		computed: {
-			searchPostes: function(){
-				if(this.search == ''){
-					return this.blogs.filter((blog) => blog.category.match(this.category));
-				}else{
-					return this.blogs.filter((blog) => blog.content.match(this.search));
-				}
-            },
             blogfilter: function(){
                 if(this.search == ''){
 					return this.blogs.filter((blog) => blog.category.match(this.category));
 				}else{
 					return this.blogs.filter((blog) => blog.content.match(this.search));
 				}
-                //return this.blogs.filter((blog) => blog.content.match(this.search));
-                //return this.blogs.filter((blog) => blog.category.match(this.category));
             }
 		}
     }

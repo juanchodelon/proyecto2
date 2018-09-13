@@ -6,6 +6,7 @@ import App from './App.vue'
 import Add from './components/add.vue';
 import Hmobile from './components/headerMobile.vue';
 import Menu from './components/menu.vue'
+import Mmobile from './components/menuMobile.vue'
 
 import Show from './components/show.vue';
 
@@ -14,6 +15,7 @@ export const bus = new Vue();
 Vue.component('app-show', Show);
 Vue.component('app-add', Add);
 Vue.component('app-hmobile', Hmobile);
+Vue.component('app-Mmobile', Mmobile);
 Vue.component('app-menu', Menu);
 Vue.use(VueAxios, axios);
 

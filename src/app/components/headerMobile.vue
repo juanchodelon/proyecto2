@@ -3,7 +3,7 @@
 
     <div class="menu">
         <transition name="fade">     
-            <div v-if="menu" id="Hmenu"></div>
+            <div v-if="menu" id="Hmenu"><app-Mmobile></app-Mmobile></div>
         </transition>
     </div>
 
@@ -18,7 +18,7 @@
     <div class="barrabusqueda">
         <transition name="fade2">     
             <div v-if="search" id="Hsearch">
-                <input type="search" placeholder="buscar algo">
+                <input type="search" v-model="busqueda" placeholder="buscar algo">
             </div>
         </transition>
     </div>
@@ -45,13 +45,15 @@
 </template>
 
 <script>
+import { bus } from '../main';
 import axios from 'axios';
     export default {
         data () {
             return {
                 menu: false,
                 search: false,
-                add: false
+                add: false,
+                busqueda: '',
             }
         },
         methods:{
@@ -71,6 +73,9 @@ import axios from 'axios';
                 this.add = !this.add
             }
         },
+		watch: {
+			busqueda: function(){ bus.$emit('buscar', this.busqueda ); },
+		},
     }
 </script>
 
@@ -104,10 +109,12 @@ i{
 #Hmenu{
     position: fixed;
     top: 0;
-    bottom: 0;
+    bottom: 3rem;
     left: 0;
-    right: 4rem;
-    background-color: gray;
+    right: 5rem;
+    overflow: auto;
+    background-color: #FFF;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
 }
 .fade-enter-active,.fade-leave-active {
   transition: all .3s ease-in-out;
@@ -151,5 +158,9 @@ i{
 .fade3-enter, .fade3-leave-to{
   opacity: 0;
 }
-
+@media screen and (min-width: 640px)  {
+    #Hmenu, #Hadd, #Hsearch{
+        display: none;
+    }
+}
 </style>
